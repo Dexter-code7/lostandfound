@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GACRKL Lost & Found Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;700;800;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Keyframe Animations */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes rotate3D {
+            0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateX(2deg) rotateY(2deg); }
+            100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(79, 70, 229, 0.4); }
+            50% { border-color: rgba(79, 70, 229, 0.8); }
+            100% { border-color: rgba(79, 70, 229, 0.4); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+
+        /* Base Body Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light background for overall page */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Hero Section - The Grand Entrance */
+        .hero-section {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); /* Vibrant Indigo gradient */
+            background-size: 200% 200%; /* For gradient animation */
+            animation: gradientShift 15s ease infinite; /* Smooth gradient animation */
+            color: white;
+            padding: 12rem 1.5rem; /* Even more padding for a grander feel */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 -15px 40px rgba(0,0,0,0.3); /* Deeper inner shadow for depth */
+            border-bottom-left-radius: 3rem; /* More rounded bottom corners */
+            border-bottom-right-radius: 3rem;
+        }
+        /* Creative Background Patterns */
+        .hero-section::before, .hero-section::after {
+            content: '';
+            position: absolute;
+            background-repeat: repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        .hero-section::before { /* Larger, slower pattern */
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 12V16h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 12V28h-2v4h-4v2h4v4h2v-4h4v-2h-4zm-10 0v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-12V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0-12V-12h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: 80px 80px;
+            animation: backgroundPan 90s linear infinite alternate, rotatePattern 180s linear infinite;
+        }
+        .hero-section::after { /* Smaller, faster pattern */
+            top: -25%;
+            left: -25%;
+            width: 150%;
+            height: 150%;
+            background-image: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M0 50L50 0H25L0 25V50zm25 0L50 25V0H25V50z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: 50px 50px;
+            animation: backgroundPan 60s linear infinite reverse, rotatePattern 120s linear infinite reverse;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: slideInUp 1.2s ease-out forwards;
+        }
+        .hero-content h1 {
+            font-family: 'Poppins', sans-serif; /* Even bolder, modern font */
+            font-weight: 900; /* Extra bold */
+            text-shadow: 0 6px 12px rgba(0,0,0,0.4); /* Stronger text shadow */
+            letter-spacing: -0.05em; /* Tighter letter spacing */
+        }
+        .hero-content p {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300; /* Lighter font for readability */
+            text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            max-width: 900px; /* Wider text block */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Auth Section - Forms Area */
+        .auth-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem 1.5rem; /* More generous padding */
+            flex-grow: 1;
+            background-color: #f8fafc; /* Lighter background for contrast */
+            position: relative;
+            z-index: 2; /* Ensure it's above hero background */
+        }
+        .auth-container {
+            background-color: #fff;
+            padding: 3rem; /* More internal padding */
+            border-radius: 1.75rem; /* Even more rounded corners */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+            width: 100%;
+            max-width: 480px; /* Wider form container */
+            text-align: center;
+            animation: fadeInScale 1s ease-out forwards;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease; /* Smoother transition */
+            border: 2px solid rgba(79, 70, 229, 0.1); /* Subtle border */
+        }
+        .auth-container:hover {
+            transform: translateY(-12px) rotateX(2deg) rotateY(2deg); /* More pronounced 3D lift and tilt */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35); /* Even stronger shadow */
+        }
+
+        /* Input Fields */
+        input[type="text"],
+        input[type="password"] {
+            border: 2px solid #cbd5e1; /* Thicker, slightly darker border */
+            border-radius: 1rem; /* Very rounded input fields */
+            padding: 1rem 1.5rem; /* More padding */
+            width: 100%;
+            font-size: 1.05rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            background-color: #fdfdfd; /* Almost white */
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #4f46e5; /* Primary indigo on focus */
+            outline: none;
+            box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.5); /* More prominent focus ring */
+            background-color: #fff;
+        }
+
+        /* Primary Button (Sign In/Sign Up) */
+        .btn-primary {
+            background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%); /* Gradient button */
+            color: #fff;
+            padding: 1rem 2rem; /* Generous padding */
+            border-radius: 1rem; /* Very rounded buttons */
+            font-weight: 800; /* Extra bold */
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4); /* Stronger shadow */
+            background-size: 200% auto; /* For shimmer effect */
+            animation: buttonPulse 2s infinite; /* Continuous subtle pulse */
+        }
+        .btn-primary:hover {
+            background-position: right center; /* Shift gradient on hover */
+            transform: translateY(-5px); /* More pronounced lift */
+            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6); /* Even stronger shadow */
+            animation: none; /* Stop pulse on hover */
+        }
+        .btn-primary:active {
+            transform: translateY(0); /* Press down effect */
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Link Buttons (Toggle Forms) */
+        .btn-link {
+            background: none;
+            border: none;
+            color: #4f46e5;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 0;
+            font-size: 1rem;
+            margin-top: 1.5rem; /* More spacing */
+            transition: color 0.3s ease, text-decoration 0.3s ease, transform 0.2s ease;
+            font-weight: 600; /* Semibold */
+        }
+        .btn-link:hover {
+            color: #3730a3; /* Darker indigo on hover */
+            text-decoration: underline;
+            transform: translateY(-2px); /* Subtle lift */
+        }
+
+        /* Message Box */
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px; /* More rounded */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Stronger shadow */
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            font-weight: 600;
+        }
+        .message-box.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .message-box.error {
+            background-color: #f44336; /* Red */
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .hero-section {
+                padding: 15rem 1.5rem; /* Even more padding on larger screens */
+            }
+            .hero-content h1 {
+                font-size: 6.5rem; /* Larger text for desktop */
+            }
+            .hero-content p {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message Box for alerts -->
+    <div id="messageBox" class="message-box"></div>
+
+    <div class="hero-section">
+        <div class="hero-content max-w-5xl mx-auto">
+            <h1 class="text-6xl md:text-7xl font-extrabold leading-tight mb-4 tracking-tight">
+                GACRKL <br class="md:hidden"> Lost & Found Hub
+            </h1>
+            <p class="text-xl md:text-3xl font-light mb-12 leading-relaxed">
+                Empowering the GACRKL community to effortlessly recover lost items and joyfully reunite found belongings with their rightful owners.
+            </p>
+            <div class="flex justify-center">
+                <a href="#auth-forms" class="bg-white text-indigo-700 hover:bg-gray-100 font-bold py-4 px-12 rounded-full shadow-xl transition duration-300 text-xl transform hover:scale-105 active:scale-95">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-forms" class="auth-section">
+        <div class="auth-container">
+            <h2 id="authTitle" class="text-4xl font-bold text-indigo-700 mb-8">Sign In</h2>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="loginUsername" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Username:</label>
+                    <input type="text" id="loginUsername" name="username" placeholder="Enter your username" required class="block w-full">
+                </div>
+                <div>
+                    <label for="loginPassword" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Password:</label>
+                    <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required class="block w-full">
+                </div>
+                <button type="submit" class="btn-primary">Sign In</button>
+                <button type="button" id="showRegisterBtn" class="btn-link">Don't have an account? <span class="font-bold">Sign Up</span></button>
+            </form>
+
+            <!-- Register Form (hidden by default) -->
+            <form id="registerForm" class="space-y-6 hidden">
+                <div>
+                    <label for="registerUsername" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Username:</label>
+                    <input type="text" id="registerUsername" name="username" placeholder="Choose a username" required class="block w-full">
+                </div>
+                <div>
+                    <label for="registerPassword" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Password:</label>
+                    <input type="password" id="registerPassword" name="password" placeholder="Choose a password" required class="block w-full">
+                </div>
+                <div>
+                    <label for="confirmPassword" class="block text-gray-700 text-sm font-semibold mb-2 text-left">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required class="block w-full">
+                </div>
+                <button type="submit" class="btn-primary">Sign Up</button>
+                <button type="button" id="showLoginBtn" class="btn-link">Already have an account? <span class="font-bold">Sign In</span></button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8 text-center mt-auto">
+        <div class="container mx-auto">
+            <p class="text-lg">&copy; 2025 GACRKL Lost & Found Hub. All rights reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">Designed with passion for our community.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Utility function to show messages
+        function showMessage(message, type = 'success') {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            messageBox.className = 'message-box'; // Reset classes
+            if (type === 'error') {
+                messageBox.classList.add('error');
+            }
+            messageBox.classList.add('show');
+
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000); // Message disappears after 3 seconds
+        }
+
+        const authTitle = document.getElementById('authTitle');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const getStartedBtn = document.querySelector('.hero-content .btn-primary');
+        
+        // Moved showRegisterBtn and showLoginBtn declarations inside DOMContentLoaded
+        let showRegisterBtn;
+        let showLoginBtn;
+
+        // --- Login Form Submission ---
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (username.length === 0 || password.length === 0) {
+                showMessage('Please enter both username and password.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('login.php', { // PHP endpoint for login
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // On successful login, PHP sets a session.
+                    // We can now redirect to the main app.
+                    showMessage('Login successful! Redirecting...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'app.html'; // Redirect to your main application page
+                    }, 1000);
+                } else {
+                    showMessage(result.message || 'Login failed. Please check your credentials.', 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage('Network error or server unreachable. Please try again.', 'error');
+            }
+        });
+
+        // --- Register Form Submission ---
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('registerUsername').value.trim();
+            const password = document.getElementById('registerPassword').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+            if (username.length < 3) {
+                showMessage('Username must be at least 3 characters long.', 'error');
+                return;
+            }
+            if (password.length < 6) {
+                showMessage('Password must be at least 6 characters long.', 'error');
+                return;
+            }
+            if (password !== confirmPassword) {
+                showMessage('Passwords do not match.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('register.php', { // PHP endpoint for registration
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    showMessage('Registration successful! Please sign in.', 'success');
+                    registerForm.reset();
+                    showLoginBtn.click(); // Switch back to login form
+                } else {
+                    showMessage(result.message || 'Registration failed. Username might be taken.', 'error');
+                }
+            }
+            catch (error) {
+                console.error('Registration error:', error);
+                showMessage('Network error or server unreachable. Please try again.', 'error');
+            }
+        });
+
+        // --- Initial Check for Session (on login page load) ---
+        // If a user is already logged in, they should be redirected directly to app.html
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Assign buttons here, after DOM is loaded
+            showRegisterBtn = document.getElementById('showRegisterBtn');
+            showLoginBtn = document.getElementById('showLoginBtn');
+
+            // Attach event listeners for form toggling
+            if (showRegisterBtn) {
+                showRegisterBtn.addEventListener('click', () => {
+                    loginForm.classList.add('hidden');
+                    registerForm.classList.remove('hidden');
+                    authTitle.textContent = 'Sign Up';
+                });
+            } else {
+                console.warn("Element with ID 'showRegisterBtn' not found.");
+            }
+
+            if (showLoginBtn) {
+                showLoginBtn.addEventListener('click', () => {
+                    registerForm.classList.add('hidden');
+                    loginForm.classList.remove('hidden');
+                    authTitle.textContent = 'Sign In';
+                });
+            } else {
+                console.warn("Element with ID 'showLoginBtn' not found.");
+            }
+
+            // Attach event listener for "Get Started" button
+            if (getStartedBtn) {
+                getStartedBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('auth-forms').scrollIntoView({ behavior: 'smooth' });
+                });
+            } else {
+                console.warn("Element with class '.hero-content .btn-primary' not found.");
+            }
+
+
+            try {
+                const response = await fetch('check_session.php'); // New PHP endpoint to check session
+                const result = await response.json();
+
+                if (result.loggedIn) {
+                    console.log('User already logged in. Redirecting to app.html.');
+                    window.location.href = 'app.html';
+                }
+            } catch (error) {
+                console.warn('Could not check session (server might not be running or check_session.php is missing):', error);
+                // Continue to display login page if session check fails
+            }
+        });
+    </script>
+</body>
+</html>

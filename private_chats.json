@@ -1,0 +1,104 @@
+[
+    {
+        "chat_id": "admin-user_687bdcf660ed1",
+        "participants": [
+            "user_687bdcf660ed1",
+            "admin"
+        ],
+        "messages": [
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:14:55.175Z"
+            },
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:15:28.589Z"
+            },
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:15:46.356Z"
+            },
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:16:24.299Z"
+            },
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hello",
+                "timestamp": "2025-07-19T19:17:22.254Z"
+            },
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:17:48.741Z"
+            },
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:21:42.547Z"
+            }
+        ]
+    },
+    {
+        "chat_id": "user_687bdcf660ed1-user_687be4cd7ec96",
+        "participants": [
+            "user_687be4cd7ec96",
+            "user_687bdcf660ed1"
+        ],
+        "messages": [
+            {
+                "senderId": "user_687be4cd7ec96",
+                "senderName": "admin",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:17:40.521Z"
+            },
+            {
+                "senderId": "user_687be4cd7ec96",
+                "senderName": "admin",
+                "message": "hiu",
+                "timestamp": "2025-07-19T19:25:20.891Z"
+            },
+            {
+                "senderId": "user_687be4cd7ec96",
+                "senderName": "admin",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:25:56.717Z"
+            },
+            {
+                "senderId": "user_687be4cd7ec96",
+                "senderName": "admin",
+                "message": "hi",
+                "timestamp": "2025-07-19T19:26:04.576Z"
+            },
+            {
+                "senderId": "user_687bdcf660ed1",
+                "senderName": "dex",
+                "message": "hello",
+                "timestamp": "2025-07-19T19:27:42.038Z"
+            },
+            {
+                "senderId": "user_687be4cd7ec96",
+                "senderName": "admin",
+                "message": "need any help",
+                "timestamp": "2025-07-19T19:28:05.871Z"
+            },
+            {
+                "senderId": "user_687be4cd7ec96",
+                "senderName": "admin",
+                "message": "no",
+                "timestamp": "2025-07-19T19:28:32.942Z"
+            }
+        ]
+    }
+]
